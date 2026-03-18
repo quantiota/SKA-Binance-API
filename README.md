@@ -89,3 +89,9 @@ A ready-to-use trading bot prototype is provided and can be customized.
 SYMBOL          = "XRPUSDT"   # XRPUSDT · BTCUSDT · ETHUSDT · SOLUSDT
 MIN_NEUTRAL_GAP = 3            # Structural filter
 ```
+
+## Contributing
+
+Contributions are welcome — strategy variants, new symbols, execution integrations, or performance improvements.
+
+Open an issue or submit a pull request.
