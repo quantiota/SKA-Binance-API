@@ -66,48 +66,26 @@ flowchart TD
     class S5 longPair;
 ```
 
-## Supported Symbols
+## Getting Started
 
-`XRPUSDT` · `BTCUSDT` · `ETHUSDT` · `SOLUSDT`
-
-## API
-
-**Base URL:** `https://api.quantiota.org`
-
-### `GET /ticks/{symbol}`
-
-Returns the latest ticks with entropy for the given symbol.
-
-| Parameter | Type | Default | Description |
-|-----------|------|---------|-------------|
-| `symbol`  | path | —       | Trading pair (`XRPUSDT`, `BTCUSDT`, `ETHUSDT`, `SOLUSDT`) |
-| `since`   | query | `0`   | Return only ticks with `trade_id > since` |
-
-**Response**
-
-```json
-{
-  "symbol": "XRPUSDT",
-  "since": 0,
-  "count": 3,
-  "ticks": [
-    {
-      "trade_id": 1001,
-      "timestamp": "2026-03-18T10:00:00.000000Z",
-      "price": 2.3451,
-      "volume": 120.5,
-      "entropy": 0.182
-    }
-  ]
-}
-```
-
-## Usage
+**Requirements:** Python 3.9+
 
 ```bash
-pip install -r requirements.txt
-python trading_bot.py --symbol XRPUSDT --api https://api.quantiota.org
+git clone https://github.com/quantiota/SKA-API.git
+cd SKA-API/ska_api_client
+pip install -r requirements_client.txt
+python trading_bot.py --symbol XRPUSDT
 ```
+
+The bot connects to `https://api.quantiota.org` by default and saves trades to a CSV file (`trading_bot_XRPUSDT_<timestamp>.csv`).
+
+**Arguments**
+
+| Argument   | Default                        | Description          |
+|------------|--------------------------------|----------------------|
+| `--symbol` | `XRPUSDT`                     | Trading pair         |
+| `--api`    | `https://api.quantiota.org`   | SKA-API base URL     |
+| `--poll`   | `1.0`                         | Poll interval (sec)  |
 
 ## Prototype
 
@@ -120,11 +98,15 @@ SYMBOL          = "XRPUSDT"   # XRPUSDT · BTCUSDT · ETHUSDT · SOLUSDT
 MIN_NEUTRAL_GAP = 3            # Structural filter
 ```
 
+---
+
 ## ToDo
 
 - [ ] Add Binance API credentials (key + secret)
 - [ ] Define position size
 - [ ] Implement order execution on OPEN and CLOSE signals
+
+---
 
 ## Contributing
 
