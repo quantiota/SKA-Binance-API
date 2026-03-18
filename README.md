@@ -1,4 +1,4 @@
-# The True Machine API
+# SKA Binance API
 The system is called The True Machine because it does not simulate the market. It observes the market as it truly operates across the nine regime transitions.
 
 ## Architecture
@@ -98,6 +98,8 @@ Returns the latest ticks with entropy for the given symbol.
 }
 ```
 
+
+
 ## Monitor
 
 `bot_monitor.py` watches the folder for result CSVs, computes cumulative P&L after each new file, saves a report, and sends it by email.
@@ -110,15 +112,13 @@ python bot_monitor.py
 ```
 
 
-
-
 ## Getting Started
 
 **Requirements:** Python 3.9+
 
 ```bash
-git clone https://github.com/quantiota/SKA-API.git
-cd SKA-API/ska_api_client
+git clone https://github.com/quantiota/SKA-Binance-API.git
+cd SKA-Binance-API/ska_api_client
 pip install -r requirements.txt
 python trading_bot.py --symbol XRPUSDT
 ```
@@ -159,3 +159,4 @@ MIN_NEUTRAL_GAP = 3            # Structural filter
 Contributions are welcome — strategy variants, new symbols, execution integrations, or performance improvements.
 
 Open an issue or submit a pull request.
+
