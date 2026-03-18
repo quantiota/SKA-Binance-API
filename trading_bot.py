@@ -25,6 +25,7 @@ SYMBOL          = "XRPUSDT"
 MIN_NEUTRAL_GAP = 3          # Structural filter — do not change unless you know why
 API_URL         = "https://api.quantiota.org"
 POLL_INTERVAL   = 1.0        # seconds
+ENGINE_RESET_AT = 3500       # SKA engine resets every 3500 trades
 
 # ── State machine ─────────────────────────────────────────────────────────────
 
@@ -216,6 +217,11 @@ class TradingBot:
                     for tick, name in transitions:
                         self.process(tick, name)
                     self.last_trade_id = ticks[-1]['trade_id']
+
+                if self.last_trade_id >= ENGINE_RESET_AT:
+                    logging.info("Engine reset — closing position and restarting")
+                    self.position      = None
+                    self.last_trade_id = 0
 
                 time.sleep(self.poll_interval)
 
