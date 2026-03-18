@@ -5,6 +5,12 @@ The system is called The True Machine because it does not simulate the market. I
 ## Architecture
 
 ```mermaid
+---
+config:
+  look: classic
+  theme: base
+  layout: elk
+---
 flowchart TD
     BINANCE[(Binance Tick Data)]
     API["SKA API"]
