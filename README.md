@@ -168,7 +168,11 @@ Each panel displays 4 metrics per symbol, reset every 3500 trades: price, regime
 
 - [XRPUSDT](https://grafana.quantiota.org/public-dashboards/6506763639364be8bab7e6c60cc8432a)
 
+- BTCUSDT
 
+- ETHUSDT
+
+- SOLUSDT
 
 ## Contributing
 
