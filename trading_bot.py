@@ -94,8 +94,8 @@ class TradingBot:
     # ── API ───────────────────────────────────────────────────────────────────
 
     def fetch_ticks(self):
-        """Fetch ticks since last_trade_id - 1 (one tick overlap for transition continuity)."""
-        since = max(0, self.last_trade_id - 1)
+        """Fetch ticks since last_trade_id - 2 (two-tick overlap for transition continuity)."""
+        since = max(0, self.last_trade_id - 2)
         try:
             r = requests.get(
                 f"{self.api_url}/ticks/{self.symbol}",
@@ -117,6 +117,7 @@ class TradingBot:
         Returns only new transitions (trade_id > last_trade_id).
         Probability P = exp(-|Δentropy / entropy|) — same as original bot.
         """
+        ticks = sorted(ticks, key=lambda t: t['trade_id'])
         results = []
         for i in range(2, len(ticks)):
             t0, t1, t2 = ticks[i-2], ticks[i-1], ticks[i]
@@ -132,7 +133,7 @@ class TradingBot:
             # Transition probability from entropy (same formula as original)
             e      = t2.get('entropy')
             e_prev = t1.get('entropy')
-            if e and e_prev and e != 0:
+            if e is not None and e_prev is not None and e != 0:
                 P = math.exp(-abs((e - e_prev) / e))
             else:
                 P = None
@@ -164,14 +165,12 @@ class TradingBot:
         if self.position is None:
             if name == 'neutral→bull':
                 self.position = Position('LONG', price, trade_id, ts, name)
-                logging.info(
-                    f">>> OPEN LONG  @ {price:.6f} | P={P:.4f if P else 'n/a'} | trade_id={trade_id}"
-                )
+                p_str = f"{P:.4f}" if P is not None else "n/a"
+                logging.info(f">>> OPEN LONG  @ {price:.6f} | P={p_str} | trade_id={trade_id}")
             elif name == 'neutral→bear':
                 self.position = Position('SHORT', price, trade_id, ts, name)
-                logging.info(
-                    f">>> OPEN SHORT @ {price:.6f} | P={P:.4f if P else 'n/a'} | trade_id={trade_id}"
-                )
+                p_str = f"{P:.4f}" if P is not None else "n/a"
+                logging.info(f">>> OPEN SHORT @ {price:.6f} | P={p_str} | trade_id={trade_id}")
             return
 
         pos = self.position
@@ -305,7 +304,7 @@ class TradingBot:
                     for t in transitions:
                         self.process(t)
                     if ticks:
-                        self.last_trade_id = ticks[-1]['trade_id']
+                        self.last_trade_id = max(t['trade_id'] for t in ticks)
 
                 if self.last_trade_id >= ENGINE_RESET_AT:
                     logging.info("Engine reset — closing position and restarting")
