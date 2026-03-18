@@ -73,7 +73,7 @@ flowchart TD
 ```bash
 git clone https://github.com/quantiota/SKA-API.git
 cd SKA-API/ska_api_client
-pip install -r requirements_client.txt
+pip install -r requirements.txt
 python trading_bot.py --symbol XRPUSDT
 ```
 
