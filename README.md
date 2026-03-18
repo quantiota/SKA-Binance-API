@@ -111,7 +111,7 @@ pip install -r requirements.txt
 python trading_bot.py --symbol XRPUSDT
 ```
 
-The bot connects to `https://api.quantiota.org` by default and saves trades to a CSV file (`trading_bot_XRPUSDT_<timestamp>.csv`).
+The bot connects to `https://api.quantiota.org` by default and saves trades to a CSV file (`trading_bot_XRPUSDT_<timestamp>.csv`). The SKA-API restarts and resets every 3500 trades — the bot handles this transparently via the `since` parameter.
 
 **Arguments**
 
