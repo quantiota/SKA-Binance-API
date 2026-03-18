@@ -90,6 +90,12 @@ SYMBOL          = "XRPUSDT"   # XRPUSDT · BTCUSDT · ETHUSDT · SOLUSDT
 MIN_NEUTRAL_GAP = 3            # Structural filter
 ```
 
+## ToDo
+
+- [ ] Add Binance API credentials (key + secret)
+- [ ] Define position size
+- [ ] Implement order execution on OPEN and CLOSE signals
+
 ## Contributing
 
 Contributions are welcome — strategy variants, new symbols, execution integrations, or performance improvements.
