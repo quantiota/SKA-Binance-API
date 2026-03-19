@@ -1,5 +1,7 @@
 # SKA Binance API
-The system does not simulate the market. It observes the market as it truly operates across the nine regime transitions.
+The system does not simulate the market. It observes the market as it truly operates across the nine regime transitions. 
+
+The "signal" is the market's own structure firing — neutral→bull is not a computed indicator, it is a regime transition event. The market generates it itself. SKA reads it.   
 
 ## Architecture
 
