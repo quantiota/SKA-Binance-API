@@ -158,6 +158,9 @@ MIN_NEUTRAL_GAP = 3            # Structural filter
 - [ ] Add Binance API credentials (key + secret)
 - [ ] Define position size
 - [ ] Implement order execution on OPEN and CLOSE signals
+- [ ] Verify live PnL on XRPUSDT
+- [ ] Extend to BTCUSDT · ETHUSDT · SOLUSDT
+
 
 
 ## Contents
