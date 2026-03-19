@@ -178,7 +178,7 @@ MIN_NEUTRAL_GAP = 3            # Structural filter
 
 Each panel displays 4 metrics per symbol, reset every 3500 trades: price, regime transition probabilities, accumulated volume, and entropy.
 
-- [XRPUSDT](http://grafana.quantiota.org/public-dashboards/6506763639364be8bab7e6c60cc8432a)
+- [XRPUSDT](http://grafana1.quantiota.org/public-dashboards/996569f39624401ebb0001b933598433)
 
 - BTCUSDT
 
