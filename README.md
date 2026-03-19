@@ -183,6 +183,17 @@ Each panel displays 4 metrics per symbol, reset every 3500 trades: price, regime
 [![Watch the demo](thumbnail.png)](https://youtu.be/01qdoMPAlB4?si=5xDByNTuGZF4gare/video)
 
 
+
+## Foundation
+
+**SKA Framework: Open Science, Proprietary Real-Time Engine**
+
+The full mathematical foundation and batch implementation are public for verification on GitHub. The real-time system extends that foundation to continuous entropy learning — that part is proprietary.
+
+- [SKA Framework](https://github.com/quantiota/Arxiv)
+
+
+
 ## Contributing
 
 Contributions are welcome — strategy variants, new symbols, execution integrations, or performance improvements.
