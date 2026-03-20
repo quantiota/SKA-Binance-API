@@ -272,6 +272,19 @@ class TradingBot:
         except KeyboardInterrupt:
             logging.info("Stopped by user")
         finally:
+            if self.position:
+                transitions = self.fetch_transitions()
+                close_price = transitions[-1]['price'] if transitions else self.position.entry_price
+                if self.position.side == 'LONG':
+                    pnl = close_price - self.position.entry_price
+                else:
+                    pnl = self.position.entry_price - close_price
+                self._record(pnl, close_price, self.position.side)
+                logging.info(
+                    f"<<< CLOSE {self.position.side} (end of run) @ {close_price:.6f} | "
+                    f"PnL={pnl*10000:+.1f} pips | exit_state={self.position.exit_state}"
+                )
+                self.position = None
             self.print_stats()
 
 
