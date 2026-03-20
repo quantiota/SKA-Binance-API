@@ -51,6 +51,7 @@ logging.basicConfig(level=logging.INFO, format='%(asctime)s %(levelname)s %(mess
 
 # ── User configuration ────────────────────────────────────────────────────────
 
+VERSION         = 2          # ← change this to switch between bot versions
 SYMBOL          = "XRPUSDT"
 MIN_NEUTRAL_GAP = 3          # Structural filter — do not change unless you know why
 API_URL         = "https://api.quantiota.org"
@@ -91,7 +92,7 @@ class TradingBot:
         self.total_pnl     = 0.0
 
         ts = datetime.now().strftime('%Y%m%d_%H%M%S')
-        self.results_file = f'trading_bot_{symbol}_{ts}.csv'
+        self.results_file = f'bot_results_v{VERSION}_{symbol}_{ts}.csv'
         self._csv_written  = False
 
     # ── API ───────────────────────────────────────────────────────────────────
@@ -231,7 +232,6 @@ class TradingBot:
             'entry':            self.position.entry_price,
             'exit':             exit_price,
             'pnl':              pnl,
-            'pnl_pips':         round(pnl / 0.0001, 1),
             'entry_transition': self.position.entry_transition,
         }
         with open(self.results_file, 'a', newline='') as f:
