@@ -486,10 +486,8 @@ class TradingBot:
                     self.last_trade_id = transitions[-1]['trade_id']
 
                 if self.tick_count >= ENGINE_RESET_AT:
-                    logging.info("Engine reset — closing position and restarting")
-                    self.position      = None
-                    self.last_trade_id = 0
-                    self.tick_count    = 0
+                    logging.info(f"Auto-stop: {self.tick_count} ticks >= {ENGINE_RESET_AT}")
+                    break
 
                 time.sleep(self.poll_interval)
 
