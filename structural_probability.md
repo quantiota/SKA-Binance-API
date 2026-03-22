@@ -186,8 +186,8 @@ are absorbed in the streaming layer and learning engine.
 - Exchange independence (Binance → Coinbase)
 
 
-## P Trajectory — Bull & Bear Cycle on Probability Space
-**Bull cycle**
+## P Trajectory — Bull Cycle on Probability Space
+
 
 ```mermaid
 block-beta
@@ -207,7 +207,7 @@ block-beta
   class B3 bn
 ```
 
-**Bear cycle**
+## P Trajectory — Bear Cycle on Probability Space
 
 ```mermaid
 block-beta
