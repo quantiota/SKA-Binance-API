@@ -185,7 +185,47 @@ are absorbed in the streaming layer and learning engine.
 **Pending validation:**
 - Exchange independence (Binance → Coinbase)
 
----
+
+## P Trajectory — Bull & Bear Cycle on Probability Space
+**Bull cycle**
+
+```mermaid
+block-beta
+  columns 6
+  B1["neutral→neutral\nP ≈ 1.00"] space space B4["neutral→neutral\nP ≈ 1.00"] B5["neutral→neutral\nP ≈ 1.00"] B6["neutral→neutral\nP ≈ 1.00"]
+  space:6
+  space B2["neutral→bull\nP ≈ 0.66"] space space space space
+  space:6
+  space space B3["bull→neutral\nP ≈ 0.51"] space space space
+
+  classDef nn fill:#c0d8ff,stroke:#999,color:#333
+  classDef nb fill:#39cccc,stroke:#007c9e,color:#fff
+  classDef bn fill:#ffdc00,stroke:#e6a800,color:#333
+
+  class B1,B4,B5,B6 nn
+  class B2 nb
+  class B3 bn
+```
+
+**Bear cycle**
+
+```mermaid
+block-beta
+  columns 6
+  C1["neutral→neutral\nP ≈ 1.00"] space space C4["neutral→neutral\nP ≈ 1.00"] C5["neutral→neutral\nP ≈ 1.00"] C6["neutral→neutral\nP ≈ 1.00"]
+  space:6
+  space space C3["bear→neutral\nP ≈ 0.51"] space space space
+  space:6
+  space C2["neutral→bear\nP ≈ 0.14"] space space space space
+
+  classDef nn fill:#c0d8ff,stroke:#999,color:#333
+  classDef nb2 fill:#f012be,stroke:#c00090,color:#fff
+  classDef bn2 fill:#ff851b,stroke:#cc5500,color:#333
+
+  class C1,C4,C5,C6 nn
+  class C2 nb2
+  class C3 bn2
+```
 
 ## State Machine Diagram
 
