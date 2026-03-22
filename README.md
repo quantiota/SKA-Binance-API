@@ -1,4 +1,5 @@
 # SKA Binance API
+
 The system does not simulate the market. It observes the market as it truly operates across the nine regime transitions.
 
 **Trade the regime transition. Ride the wave.**
@@ -8,7 +9,6 @@ The "signal" is the market's own structure firing — neutral→bull is not a co
 The market looks chaotic — random price movements, noise, unpredictable events. But underneath, the regime transition probabilities are stationary. Chaos would mean the transition matrix is random. It is not. It is stable and non-uniform. That non-uniformity is the structure SKA learns.
 
 The market is a deterministic process in probability space — not in price space. Everyone looks at price and sees chaos. SKA looks at entropy and sees order.
-  
 
 ## Architecture
 
@@ -24,17 +24,6 @@ flowchart TD
     BOT --> LONG
     BOT --> SHORT
 
-    subgraph LONG["LONG"]
-        direction TB
-        L1["neutral→bull<br/><i>OPEN / WAIT_PAIR</i>"]
-        L2["bull→neutral<br/><i>pair confirmed / IN_NEUTRAL</i>"]
-        L3["neutral→neutral × N (N≥3)<br/><i>neutral gap / READY</i>"]
-        L4["neutral→bear<br/><i>opp. cycle opens / EXIT_WAIT</i>"]
-        L5["bear→neutral<br/><i>opp. pair confirmed / CLOSE LONG</i>"]
-        L1 --> L2 --> L3 --> L4 --> L5
-        L3 -. "↺ repeats" .-> L1
-    end
-
     subgraph SHORT["SHORT"]
         direction TB
         S1["neutral→bear<br/><i>OPEN / WAIT_PAIR</i>"]
@@ -44,6 +33,17 @@ flowchart TD
         S5["bull→neutral<br/><i>opp. pair confirmed / CLOSE SHORT</i>"]
         S1 --> S2 --> S3 --> S4 --> S5
         S3 -. "↺ repeats" .-> S1
+    end
+
+    subgraph LONG["LONG"]
+        direction TB
+        L1["neutral→bull<br/><i>OPEN / WAIT_PAIR</i>"]
+        L2["bull→neutral<br/><i>pair confirmed / IN_NEUTRAL</i>"]
+        L3["neutral→neutral × N (N≥3)<br/><i>neutral gap / READY</i>"]
+        L4["neutral→bear<br/><i>opp. cycle opens / EXIT_WAIT</i>"]
+        L5["bear→neutral<br/><i>opp. pair confirmed / CLOSE LONG</i>"]
+        L1 --> L2 --> L3 --> L4 --> L5
+        L3 -. "↺ repeats" .-> L1
     end
 
     classDef data      fill:#E3F2FD,stroke:#1E88E5,stroke-width:2px;
@@ -120,6 +120,7 @@ export GMAIL_TO="your@gmail.com"
 python bot_monitor.py
 ```
 
+---
 
 ## Getting Started
 
@@ -127,7 +128,7 @@ python bot_monitor.py
 
 ```bash
 git clone https://github.com/quantiota/SKA-Binance-API.git
-cd SKA-Binance-API/
+cd SKA-Binance-API/ska_api_client
 pip install -r requirements.txt
 python trading_bot.py --symbol XRPUSDT
 ```
@@ -136,11 +137,12 @@ The bot connects to `https://api.quantiota.org` by default and saves trades to a
 
 **Arguments**
 
-| Argument   | Default                        | Description          |
-|------------|--------------------------------|----------------------|
-| `--symbol` | `XRPUSDT`                     | Trading pair         |
-| `--api`    | `https://api.quantiota.org`   | SKA-API base URL     |
-| `--poll`   | `1.0`                         | Poll interval (sec)  |
+| Argument   | Default                        | Description                         |
+|------------|--------------------------------|-------------------------------------|
+| `--symbol` | `XRPUSDT`                     | Trading pair                        |
+| `--api`    | `https://api.quantiota.org`   | SKA-API base URL                    |
+| `--poll`   | `1.0`                         | Poll interval (sec)                 |
+| `--live`   | off                            | Enable live Binance order execution |
 
 ## Prototype
 
@@ -152,6 +154,8 @@ A ready-to-use trading bot prototype is provided as a starting point. It demonst
 SYMBOL          = "XRPUSDT"   # XRPUSDT · BTCUSDT · ETHUSDT · SOLUSDT
 MIN_NEUTRAL_GAP = 3            # Structural filter
 ```
+
+
 
 ## Live Results — XRPUSDT (42 loops · 147,000 ticks)
 
@@ -177,12 +181,11 @@ MIN_NEUTRAL_GAP = 3            # Structural filter
 The signal is symmetric — both LONG and SHORT are profitable. The only losing loop (loop 28, −32 pips) recovered fully in the next loop (+37 pips). The worst single trade is capped at −15 pips across the entire dataset.
 
 
-
 ## ToDo
 
-- [ ] Add Binance API credentials (key + secret)
-- [ ] Define position size
-- [ ] Implement order execution on OPEN and CLOSE signals
+- [x] Add Binance API credentials (Ed25519 key pair)
+- [x] Define position size
+- [x] Implement order execution on OPEN and CLOSE signals
 - [ ] Verify live PnL on XRPUSDT
 - [ ] Extend to BTCUSDT · ETHUSDT · SOLUSDT
 
@@ -193,27 +196,17 @@ The signal is symmetric — both LONG and SHORT are profitable. The only losing 
 ```
 ├── README.md           — documentation
 ├── requirements.txt    — dependencies
-├── trading_bot.py      — PCT state machine, polls /ticks/{symbol}
+├── trading_bot.py      — PCT state machine, polls /ska_bot/{symbol}
 └── bot_monitor.py      — scans results, generates reports, sends email
 ```
+
+
 
 ## Dashboard
 
 Each panel displays 4 metrics per symbol, reset every 3500 trades: price, regime transition probabilities, accumulated volume, and entropy.
 
-- [XRPUSDT](http://grafana1.quantiota.org/public-dashboards/996569f39624401ebb0001b933598433)
-
-- BTCUSDT
-
-- ETHUSDT
-
-- SOLUSDT
-
-
-
-## SKA Real-Time Dashboard — XRPUSDT Live Market Structure Analysis (Youtube)
-
-[![Watch the demo](thumbnail.png)](https://youtu.be/01qdoMPAlB4?si=5xDByNTuGZF4gare/video)
+- [XRPUSDT](https://grafana.quantiota.org/public-dashboards/6506763639364be8bab7e6c60cc8432a)
 
 
 
@@ -222,7 +215,6 @@ Each panel displays 4 metrics per symbol, reset every 3500 trades: price, regime
 **SKA Framework: Open Science, Proprietary Real-Time Engine**
 
 The full mathematical foundation and batch implementation are public for verification on [GitHub](https://github.com/quantiota/Arxiv). The real-time system extends that foundation to continuous entropy learning — that part is proprietary.
-
 
 
 
