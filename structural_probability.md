@@ -206,7 +206,8 @@ block-beta
   class B2 nb
   class B3 bn
 ```
-
+ <br>
+ 
 ## P Trajectory — Bear Cycle on Probability Space
 
 ```mermaid
