@@ -206,7 +206,7 @@ The signal is symmetric — both LONG and SHORT are profitable. The only losing 
 
 Each panel displays 4 metrics per symbol, reset every 3500 trades: price, regime transition probabilities, accumulated volume, and entropy.
 
-- [XRPUSDT](https://grafana.quantiota.org/public-dashboards/6506763639364be8bab7e6c60cc8432a)
+- [XRPUSDT](https://grafana1.quantiota.org/public-dashboards/f74461e7f8254723843bda0742677ef3)
 
 
 
