@@ -68,8 +68,11 @@ from datetime import datetime
 from typing import Optional
 
 import requests
+import urllib3
 from cryptography.hazmat.primitives.asymmetric.ed25519 import Ed25519PrivateKey
 from dotenv import load_dotenv
+
+urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 load_dotenv()   # load .env from the current directory before reading os.environ
 
@@ -173,7 +176,8 @@ class TradingBot:
             r = requests.get(
                 f"{self.api_url}/ska_bot/{self.symbol}",
                 params={"since": self.last_trade_id},
-                timeout=5
+                timeout=5,
+                verify=False
             )
             r.raise_for_status()
             return r.json().get("transitions", [])
