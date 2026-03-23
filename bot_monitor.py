@@ -165,7 +165,7 @@ def main():
             result = analyze(files)
             if result:
                 summary, detailed = result
-                subject  = f"SKA Bot Report — {current_count} files — PnL={summary.split('Total PnL:')[1].split()[0]} pips"
+                subject  = f"SKA API Bot Report — {current_count} files — PnL={summary.split('Total PnL:')[1].split()[0]} pips"
                 txt_path = os.path.join(RESULTS_DIR, f"ska_report_v{VERSION}_{current_count}_files.txt")
                 with open(txt_path, 'w') as f:
                     f.write(detailed)
