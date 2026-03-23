@@ -132,12 +132,13 @@ python bot_monitor.py
 
 Access to the `/ska_bot/` endpoint requires an API key.
 
-To become a beta tester, open an issue on this repository with the title **"Beta Access Request"** and include:
-- Your background (algo trading, quant, developer)
-- Which asset(s) you plan to test
-- Whether you intend to test dry-run only or live execution
+To become a beta tester:
+
+1. **Fork this repository** — this identifies your GitHub account
+2. **Email** [info@quantiota.org](mailto:info@quantiota.org) with the subject **"Beta Access Request"** and include a link to your fork
 
 You will receive a personal `SKA_API_KEY` to add to your `.env` file.
+
 
 
 
