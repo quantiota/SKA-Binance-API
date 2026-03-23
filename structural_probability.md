@@ -235,6 +235,7 @@ block-beta
   class B3 bn
 ```
  <br>
+  <br>
 
  ## P Trajectory — Bull Trends on Probability Space
 ```mermaid 
@@ -257,7 +258,7 @@ block-beta
                                                                                                                                                               
                  
  ```
-
+ <br>
   <br>
 
 ## P Trajectory — Bear Cycle on Probability Space
@@ -280,6 +281,7 @@ block-beta
   class C3 bn2
 ```
  <br>
+  <br>
  
 ## P Trajectory — Bear Trends on Probability Space
 
@@ -302,7 +304,8 @@ block-beta
     class C3,C9 bn2 
 
   ```
-
+ <br>
+  <br>
 ## State Machine Diagram
 
 ```mermaid
