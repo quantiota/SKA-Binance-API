@@ -306,6 +306,7 @@ block-beta
   ```
  <br>
   <br>
+  
 ## State Machine Diagram
 
 ```mermaid
