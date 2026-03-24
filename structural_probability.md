@@ -214,6 +214,8 @@ The live measurement matches the theoretical constant to 3 decimal places.
 - Exchange independence (Binance → Coinbase)
 
 ## P Trajectory — Trade Sequence
+The diagrams below are built in the probability space across the trade ID sequence.
+
 
 ```mermaid 
 block-beta
