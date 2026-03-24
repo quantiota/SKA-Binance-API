@@ -208,7 +208,7 @@ The live measurement matches the theoretical constant to 3 decimal places.
 
 **Confirmed independent of:**
 - Asset (XRPUSDT vs BTCUSDT — 60,000× price difference)
-
+- Exchange (Binance vs Coinbase)
 
 **Pending validation:**
 - Exchange independence (Binance → Coinbase)
