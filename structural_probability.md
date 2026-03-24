@@ -219,7 +219,7 @@ The diagrams below are built in the probability space across the trade ID sequen
 
 ```mermaid 
 block-beta
-  right<["TRde ID Sequence"]>(right)
+  right<["Trade ID Sequence"]>(right)
 ```
 
 ## P Trajectory — Bull Cycle on Probability Space
