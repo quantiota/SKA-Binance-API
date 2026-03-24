@@ -213,16 +213,8 @@ The live measurement matches the theoretical constant to 3 decimal places.
 **Pending validation:**
 - Exchange independence (Binance → Coinbase)
 
-## P Trajectory — Trade Sequence
-The diagrams below are built in the probability space across the trade ID sequence.
 
-
-```mermaid 
-block-beta
-  right<["Trade ID Sequence"]>(right)
-```
-
-## P Trajectory — Bull Cycle on Probability Space
+## P Trajectory — Bull Cycle on Probability & Trade ID Sequence Space
 
 
 ```mermaid 
@@ -247,7 +239,7 @@ block-beta
  <br>
   <br>
 
- ## P Trajectory — Bull Trends on Probability Space
+ ## P Trajectory — Bull Trends on Probability & Trade ID Sequence Space
 ```mermaid 
      block-beta                                                                                                                                                 
     columns 12                                                                                                                                               
@@ -271,8 +263,7 @@ block-beta
  <br>
   <br>
 
-## P Trajectory — Bear Cycle on Probability Space
-
+## P Trajectory — Bear Cycle on Probability & Trade ID Sequence Space
 ```mermaid
 block-beta
   columns 6
@@ -293,7 +284,7 @@ block-beta
  <br>
   <br>
  
-## P Trajectory — Bear Trends on Probability Space
+## P Trajectory — Bear Trends on Probability & Trade ID Sequence Space
 
 ```mermaid
  block-beta                                                                                                                                                 
