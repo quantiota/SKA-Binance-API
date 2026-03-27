@@ -29,14 +29,20 @@ Define the tick-level probability variation:
 A transition is detected when ΔP falls inside the tolerance band centered on the structural value:
 
 ```
-|ΔP − (−0.86)| ≤ tol  →  bear    (neutral→bear structural band)
-|ΔP − (−0.34)| ≤ tol  →  bull    (neutral→bull structural band)
-else                   →  neutral
-
-tol = 0.025  (tunable parameter)
+|ΔP − (−0.86)| ≤ TOL_BEAR  →  bear    (neutral→bear structural band)
+|ΔP − (−0.34)| ≤ TOL_BULL  →  bull    (neutral→bull structural band)
+else                        →  neutral
 ```
 
-Each transition maps to a unique ΔP structural value — detection is exact, not a one-sided threshold.
+Tolerance is **proportional** to the structural P value of each band:
+
+```
+K        = 0.03
+TOL_BEAR = K × P_NEUTRAL_BEAR = 0.03 × 0.14 = 0.004
+TOL_BULL = K × P_NEUTRAL_BULL = 0.03 × 0.66 = 0.020
+```
+
+Each band gets a tolerance proportional to its own P value — tight for the sharp bear shock (P=0.14), wider for the gradual bull drift (P=0.66). Detection is exact, not a one-sided threshold.
 
 
 
@@ -158,12 +164,14 @@ the natural information-theoretic boundary between structured and random regimes
 
 ## Constants
 
-| Constant        | Value | Description                                           |
-|-----------------|-------|-------------------------------------------------------|
-| DP_NEUTRAL_BULL | 0.34  | structural ΔP for neutral→bull = 1.00 − 0.66         |
-| DP_NEUTRAL_BEAR | 0.86  | structural ΔP for neutral→bear = 1.00 − 0.14         |
-| TOL             | 0.025 | tolerance band half-width for ΔP detection (tunable) |
-| MIN_NEUTRAL_GAP | 3     | minimum neutral ticks before READY state              |
+| Constant        | Value | Description                                                  |
+|-----------------|-------|--------------------------------------------------------------|
+| DP_NEUTRAL_BULL | 0.34  | structural ΔP for neutral→bull = 1.00 − 0.66                |
+| DP_NEUTRAL_BEAR | 0.86  | structural ΔP for neutral→bear = 1.00 − 0.14                |
+| K               | 0.03  | proportional tolerance factor                                |
+| TOL_BULL        | 0.020 | K × P_NEUTRAL_BULL — tolerance for neutral→bull band         |
+| TOL_BEAR        | 0.004 | K × P_NEUTRAL_BEAR — tolerance for neutral→bear band         |
+| MIN_NEUTRAL_GAP | 3     | minimum neutral ticks before READY state                     |
 
 
 
@@ -192,7 +200,9 @@ recalibration per asset:
 |-----------------|-------|--------------------------------------|
 | DP_NEUTRAL_BULL | 0.34  | structural ΔP center — neutral→bull  |
 | DP_NEUTRAL_BEAR | 0.86  | structural ΔP center — neutral→bear  |
-| TOL             | 0.025 | tolerance band half-width            |
+| K               | 0.03  | proportional tolerance factor        |
+| TOL_BULL        | 0.020 | K × 0.66 — neutral→bull band        |
+| TOL_BEAR        | 0.004 | K × 0.14 — neutral→bear band        |
 | P_NEUTRAL_BULL  | 0.66  | P value at neutral→bull              |
 | P_X_NEUTRAL     | 0.51  | P value at bull/bear→neutral         |
 | P_NEUTRAL_BEAR  | 0.14  | P value at neutral→bear              |
@@ -336,8 +346,7 @@ Color = ΔH direction (inverted vs price) · 🟢🟢 / 🔴🔴 = direct jump (
 | **bear**    | 🔘      | 🔴🔴   | 🟢     |
 
   
-
-
+  
 ## State Machine Diagram
 
 ```mermaid
