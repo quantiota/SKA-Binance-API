@@ -1,6 +1,6 @@
 # SKA Binance API
 
-![Trade Tick Data](trade_tick_data.png)
+![Trade Tick Data](trade_tick_data.jpg)
 
 The system does not simulate the market. It observes the market as it truly operates across the nine regime transitions.
 
