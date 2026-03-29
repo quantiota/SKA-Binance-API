@@ -255,8 +255,8 @@ Each panel displays 4 metrics per symbol, reset every 3500 trades: price, regime
 
 
 ## Docs
-[Entropy Regime Detection](entropy_regime_detection.md)
-[Structural Probability](structural_probability.md)
+- [Entropy Regime Detection](entropy_regime_detection.md)
+- [Structural Probability](structural_probability.md)
 
 ## Foundation
 
