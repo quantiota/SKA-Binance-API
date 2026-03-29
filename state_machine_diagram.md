@@ -1,4 +1,10 @@
 
+---
+config:
+  look: classic
+  theme: base
+  layout: elk
+---
 flowchart TD
     P["P(n) = exp(-|ΔH/H|)"]
     DP["ΔP(n) = P(n) - P(n-1)"]
