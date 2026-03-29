@@ -1,3 +1,6 @@
+## State Machine Diagram
+
+```mermaid
 
 ---
 config:
@@ -43,3 +46,4 @@ flowchart TD
     READY_S -->|"neutral→bear\ncycle repeats"| WAIT_PAIR_S
     READY_S -->|"neutral→bull\nopposite opens"| EXIT_S["EXIT_WAIT\nSHORT"]
     EXIT_S -->|"bull→neutral\nopposite confirmed"| CLOSE_S["CLOSE SHORT"]
+```
