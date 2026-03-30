@@ -188,27 +188,31 @@ MIN_NEUTRAL_GAP = 3            # Structural filter
 
 
 
-## Live Results — XRPUSDT (79 loops · 276,500 ticks)
+
+## Live Results — XRPUSDT (84 loops · 294,000 ticks)
 
 > Dry-run on live Binance tick stream. Each loop = 3,500 trades processed by the SKA engine.
 
 | Metric | Value |
 |--------|-------|
-| Total trades | 1,869 |
-| Win rate | **49.0%** |
-| Total PnL | **+3,716 pips** |
-| Avg PnL / trade | +1.99 pips |
+| Total trades | 1,970 |
+| Win rate | **48.0%** |
+| Total PnL | **+3,756 pips** |
+| Avg PnL / trade | +1.91 pips |
 | Best trade | +35 pips |
 | Worst trade | −32 pips |
+| Total pips / trade | 11.6 pips |
+| Capture rate | **16.5%** |
 
 **By side**
 
 | Side | Trades | PnL | Win rate |
 |------|--------|-----|----------|
-| LONG | 989 | +2,069 pips | 50.3% |
-| SHORT | 880 | +1,647 pips | 47.5% |
+| LONG | 1,034 | +2,087 pips | 49.3% |
+| SHORT | 936 | +1,669 pips | 46.6% |
 
-The signal is symmetric — both LONG and SHORT are profitable. ΔP_pair is stable across all 79 loops (bull ≈ −0.19, bear ≈ +0.37), confirming SKA convergence and structural consistency of the signal.
+The signal is symmetric — both LONG and SHORT are profitable. ΔP_pair is stable across all 84 loops (bull ≈ −0.19, bear ≈ +0.37), confirming SKA convergence and structural consistency of the signal. Capture rate = avg pips/trade ÷ total available pips/trade.
+
 
 
 ## ToDo
