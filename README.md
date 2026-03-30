@@ -22,7 +22,7 @@ config:
   layout: elk
 ---
 flowchart TD
-    BINANCE[(Binance Tick Data)]
+    BINANCE[(Binance <br/> Raw Tick Data)]
     API["SKA API"]
     BOT@{ shape: diamond, label: "Trading Bot" }
 
