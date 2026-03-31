@@ -2,15 +2,29 @@
 
 ![Trade Tick Data](trade_tick_data.jpg)
 
-The system does not simulate the market. It observes the market as it truly operates across the nine regime transitions.
+## Introduction
+
+The **SKA Binance Trading Bot** is a high-sophistication, entropy-driven trading system that operates on **true tick data** from Binance.
+
+Unlike classical bots that rely on lagging indicators (RSI, Moving Averages, Bollinger Bands, etc.), the SKA bot detects **regime transitions** in real time using structural entropy. It does not predict price — it observes the market’s own internal structure as it shifts between neutral, bull, and bear regimes.
+
+The core innovation is the **paired regime cycle**:
+- `neutral-neutral → neutral-bull → bull-neutral` (LONG pair)
+- `neutral-neutral → neutral-bear → bear-neutral` (SHORT pair)
+
+These transitions are not random. Their probability distribution is remarkably stable across time, giving the bot a structural edge rather than a statistical one.
+
+### Why This Matters
+
+- The heavy entropy computation runs on a powerful backend server.
+- The lightweight execution engine (state machine, decision logic, and order placement) runs efficiently on a **Raspberry Pi** via the [Raspberry-Pi-AI-Agent-Host](https://github.com/quantiota/Raspberry-Pi-AI-Agent-Host).
+- The system is designed for **live trading**, not simulation. Every decision is made on real tick-by-tick market data.
+
+This architecture allows sophisticated quant-level logic to run on modest hardware while maintaining full transparency and control.
 
 **Trade the regime transition. Ride the wave.**
 
-The "signal" is the market's own structure firing — neutral→bull is not a computed indicator, it is a regime transition event. The market generates it itself. SKA reads it.
-
-The market looks chaotic — random price movements, noise, unpredictable events. But underneath, the regime transition probabilities are stationary. Chaos would mean the transition matrix is random. It is not. It is stable and non-uniform. That non-uniformity is the structure SKA learns.
-
-The market is a deterministic process in probability space — not in price space. Everyone looks at price and sees chaos. SKA looks at entropy and sees order.
+The market generates the signal itself. SKA simply reads it.
 
 ## Architecture
 
