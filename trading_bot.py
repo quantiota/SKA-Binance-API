@@ -85,7 +85,6 @@ SYMBOL          = "XRPUSDT"
 MIN_NN_COUNT    = 3          # Structural filter — do not change unless you know why
 API_URL         = "https://api.quantiota.org"
 POLL_INTERVAL   = 1.0        # seconds
-ENGINE_RESET_AT = 3500       # SKA engine resets every 3500 trades
 DP_PAIR_CUTOFF  = 3200       # stop recording ΔP_pair before engine reset
 
 RESULTS_DIR     = 'bot_results_v2'
@@ -166,7 +165,6 @@ class TradingBot:
         self.dry_run       = dry_run
         self.position: Optional[Position] = None
         self.last_trade_id = None
-        self.tick_count    = 0   # counts processed transitions; resets with engine
         self._private_key  = None
         self._lot_filter   = None   # populated in run() when dry_run=False
 
@@ -603,7 +601,7 @@ class TradingBot:
             f"SKA Trading Bot v{VERSION} | symbol={self.symbol} | api={self.api_url} | "
             f"dry_run={self.dry_run}"
         )
-        logging.info(f"MIN_NN_COUNT={MIN_NN_COUNT} | ENGINE_RESET_AT={ENGINE_RESET_AT} | K={K}")
+        logging.info(f"MIN_NN_COUNT={MIN_NN_COUNT} | K={K}")
         logging.info(f"TOL_BULL={TOL_BULL:.4f} | TOL_BEAR={TOL_BEAR:.4f} | TOL_CLOSE={TOL_CLOSE:.4f}")
 
         if not self.dry_run:
@@ -620,12 +618,7 @@ class TradingBot:
                 transitions = self.fetch_transitions()
                 for t in transitions:
                     self.process_signal(t)
-                    self.tick_count     += 1
                     self._entropy_count += 1
-
-                if self.tick_count >= ENGINE_RESET_AT:
-                    logging.info(f"Auto-stop: {self.tick_count} ticks >= {ENGINE_RESET_AT}")
-                    break
 
                 time.sleep(self.poll_interval)
 
@@ -676,3 +669,4 @@ if __name__ == '__main__':
         dry_run=not args.live,
     )
     bot.run()
+
