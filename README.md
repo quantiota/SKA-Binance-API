@@ -97,7 +97,7 @@ flowchart TD
 
 ## Supported Symbols
 
-`XRPUSDT` · `BTCUSDT` · `ETHUSDT` · `SOLUSDT`
+`XRPUSDT` · `BTCUSDT` · `ETHUSDT` · `SOLUSDT` · `BNBUSDT`
 
 
 
@@ -111,7 +111,7 @@ Returns pre-computed regime transitions for the given symbol. Regime classificat
 
 | Parameter | Type | Default | Description |
 |-----------|------|---------|-------------|
-| `symbol`  | path | —       | Trading pair (`XRPUSDT`, `BTCUSDT`, `ETHUSDT`, `SOLUSDT`) |
+| `symbol`  | path | —       | Trading pair (`XRPUSDT`, `BTCUSDT`, `ETHUSDT`, `BNBUSDT`, `SOLUSDT`) |
 | `since`   | query | `0`   | Return only transitions with `trade_id > since` |
 
 **Response**
@@ -201,7 +201,7 @@ A ready-to-use trading bot prototype is provided as a starting point. It demonst
 ## User Customization
 
 ```python
-SYMBOL          = "XRPUSDT"   # XRPUSDT · BTCUSDT · ETHUSDT · SOLUSDT
+SYMBOL          = "XRPUSDT"   # XRPUSDT · BTCUSDT · ETHUSDT · BNDUSDT ·  SOLUSDT
 MIN_NEUTRAL_GAP = 3            # Structural filter
 ```
 
@@ -241,7 +241,7 @@ The signal is symmetric — both LONG and SHORT are profitable. ΔP_pair is stab
 - [x] Define position size
 - [x] Implement order execution on OPEN and CLOSE signals
 - [ ] Verify live PnL on XRPUSDT
-- [ ] Extend to BTCUSDT · ETHUSDT · SOLUSDT
+- [ ] Extend to BTCUSDT · ETHUSDT · SOLUSDT · BNDUSDT 
 
 
 
