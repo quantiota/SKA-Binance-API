@@ -26,6 +26,17 @@ This architecture allows sophisticated quant-level logic to run on modest hardwa
 
 The market generates the signal itself. SKA simply reads it.
 
+## Risk Management
+
+There is no stop loss. The exit condition is structural — the regime transition itself signals when to close a position.
+
+- A **LONG** opens on `neutral→bull` and closes on `bear→neutral`. No price target. No stop loss.
+- A **SHORT** opens on `neutral→bear` and closes on `bull→neutral`. No price target. No stop loss.
+
+Risk is not managed by price distance but by market structure. If the regime does not complete its cycle, the position stays open. The regime transition IS the risk management.
+
+This is fundamentally different from classical bots where risk = price distance. Here risk = structural uncertainty of the regime completing its cycle.
+
 ## Architecture
 
 ```mermaid
@@ -201,6 +212,9 @@ The bot connects to `https://api.quantiota.org` by default and saves trades to a
 | `--api`    | `https://api.quantiota.org`   | SKA-API base URL                    |
 | `--poll`   | `1.0`                         | Poll interval (sec)                 |
 | `--live`   | off                            | Enable live Binance order execution |
+
+
+
 
 ## Prototype
 
