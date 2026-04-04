@@ -36,17 +36,27 @@ config:
   layout: elk
 ---
 flowchart TD
-    BINANCE[(Binance <br/> Raw Tick Data)]
+
+  BINANCE[(Binance\nRaw Tick Data)]
+  API[SKA API]
+  BOT@{ shape: diamond, label: "Trading Bot" }
+
+  subgraph Backend["SKA Learning Server"]
+    direction TB
     ENGINE[SKA Engine]
-    API["SKA API"]
-    BOT@{ shape: diamond, label: "Trading Bot" }
 
-    BINANCE -- "symbol" --> ENGINE
-    API -- "regime transitions" --> BOT
-    ENGINE -- "entropy" --> API
+    QDB[(QuestDB)]
+  
+  end
 
-    BOT --> LONG
-    BOT --> SHORT
+  BINANCE -- "ticks" --> Backend
+  ENGINE -- "entropy" --> QDB
+  
+  Backend -- "read" --> API
+  API -- "regime transitions" --> BOT
+
+BOT --> LONG
+BOT --> SHORT
 
     subgraph SHORT["SHORT"]
         direction TB
