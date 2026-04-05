@@ -47,22 +47,28 @@ config:
   layout: elk
 ---
 flowchart TD
-
   BINANCE[(Binance\nRaw Tick Data)]
   API[SKA API]
   BOT@{ shape: diamond, label: "Trading Bot" }
+
+  
+
 
   subgraph Backend["Backend"]
     direction TB
     ENGINE[SKA Engine]
     QDB[(QuestDB)]
     API[SKA API]
+    GRAFANA[Grafana]
   end
 
   BINANCE -- "ticks" --> Backend
   ENGINE -- "entropy" --> QDB
   QDB -- "read" --> API
+  GRAFANA -- "queries data" --> QDB
   Backend -- "regime transitions" --> BOT
+
+
 
 BOT --> LONG
 BOT --> SHORT
@@ -111,6 +117,7 @@ BOT --> SHORT
     class S3 neutral;
     class S4 longOpen;
     class S5 longPair;
+
 ```
 
 
