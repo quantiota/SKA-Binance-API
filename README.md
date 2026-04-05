@@ -272,6 +272,7 @@ The signal is symmetric — both LONG and SHORT are profitable. ΔP_pair is stab
 ```
 ├── README.md                   — documentation
 ├── structural_probability.md   — P band derivation and threshold reference
+├── entropy_regime_detection.md — dev analysis
 ├── requirements.txt            — dependencies
 ├── trading_bot.py              — PCT state machine, polls /ska_bot/{symbol}
 └── bot_monitor.py              — scans results, generates reports, sends email
