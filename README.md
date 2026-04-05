@@ -190,7 +190,7 @@ To become a beta tester:
 1. **Fork this repository** — this identifies your GitHub account
 2. **Email** [info@quantiota.org](mailto:info@quantiota.org) with the subject **"Beta Access Request"** and include a link to your fork
 3. **Backtesting** You can test/improve the logic on [SKA Batch Backtest — Paired Cycle Trading (PCT)](https://github.com/quantiota/SKA-quantitative-finance/tree/main/batch_trading_bot)
-4. **Contribution** has nothing to do with optimisation process.
+4. **Contribution** has nothing to do with optimisation process. A strong logical mindset is required.
 5. **API access** available for active contributors.
 
 
