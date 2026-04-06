@@ -48,10 +48,6 @@ config:
 ---
 flowchart TD
   BINANCE[(Binance\nRaw Tick Data)]
-  API[SKA API]
-
-  
-
 
   subgraph Backend["Backend"]
     direction TB
@@ -61,11 +57,11 @@ flowchart TD
     GRAFANA[Grafana]
   end
 
-  BINANCE -- "ticks" --> Backend
+  BINANCE -- "ticks" --> ENGINE
   ENGINE -- "entropy" --> QDB
   QDB -- "read" --> API
   GRAFANA -- "queries data" --> QDB
-  Backend -- "regime transitions" --> TradingBot
+  API -- "regime transitions" --> TradingBot
 
 
 
