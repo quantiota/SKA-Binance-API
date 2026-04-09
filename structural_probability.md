@@ -347,10 +347,10 @@ Color = ΔH direction (inverted vs price) · 🟢🟢 / 🔴🔴 = direct jump (
 
   
   
+  
 ## State Machine Diagram
 
 ```mermaid
-
 ---
 config:
   look: classic
@@ -385,14 +385,16 @@ flowchart TD
     WAIT_PAIR_L -->|"bull→neutral\npair confirmed"| IN_N_L["IN_NEUTRAL\ncounting neutral→neutral"]
     WAIT_PAIR_S -->|"bear→neutral\npair confirmed"| IN_N_S["IN_NEUTRAL\ncounting neutral→neutral"]
 
-    IN_N_L -->|"n ≥ 3 then non-neutral"| READY_L["READY\nLONG"]
-    IN_N_S -->|"n ≥ 3 then non-neutral"| READY_S["READY\nSHORT"]
+    IN_N_L -->|"n ≥ 10 then non-neutral"| READY_L["READY\nLONG"]
+    IN_N_S -->|"n ≥ 10 then non-neutral"| READY_S["READY\nSHORT"]
 
     READY_L -->|"neutral→bull\ncycle repeats"| WAIT_PAIR_L
     READY_L -->|"neutral→bear\nopposite opens"| EXIT_L["EXIT_WAIT\nLONG"]
-    EXIT_L -->|"bear→neutral\nopposite confirmed"| CLOSE_L["CLOSE LONG"]
+    EXIT_L -->|"bear→neutral\n|P−0.51|≤0.0153"| CLOSE_L["CLOSE LONG"]
+    EXIT_L -->|"neutral→bull\ncycle repeats"| WAIT_PAIR_L
 
     READY_S -->|"neutral→bear\ncycle repeats"| WAIT_PAIR_S
     READY_S -->|"neutral→bull\nopposite opens"| EXIT_S["EXIT_WAIT\nSHORT"]
-    EXIT_S -->|"bull→neutral\nopposite confirmed"| CLOSE_S["CLOSE SHORT"]
+    EXIT_S -->|"bull→neutral\n|P−0.51|≤0.0153"| CLOSE_S["CLOSE SHORT"]
+    EXIT_S -->|"neutral→bear\ncycle repeats"| WAIT_PAIR_S
 ```
