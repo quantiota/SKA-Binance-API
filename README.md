@@ -131,6 +131,8 @@ flowchart TD
 
 The state machine operates on trade sequence. Each transition is triggered by the structural grammar of consecutive tick pairs — confirmed by entropy dynamics. The regime transition itself is the signal, the confirmation, and the exit condition.
 
+The current state machine is already a structured parser of market transitions, but it is likely only an initial approximation of a deeper discrete structural grammar.
+
 ```mermaid
 ---
 config:
