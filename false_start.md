@@ -1,4 +1,17 @@
 
+
+#False Start 
+
+##False Start — Direct bull→bear Transition
+
+  The market confirms two bull pairs correctly (neutral→bull→neutral), then opens a third LONG at     
+  neutral→bull. Instead of confirming with bull→neutral (P ≈ 0.51), the transition fires directly
+  bull→bear (P ≈ 0.018) — a structurally rare event that signals the expected confirmation will never 
+  arrive. The position closes at a loss on bear→neutral. The low probability of bull→bear is not noise
+   — it is the structural fingerprint of a false start, detectable from the entropy dynamics before
+  the loss is realized.
+
+
 ```mermaid
 ---
 config:
