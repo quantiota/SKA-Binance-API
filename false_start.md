@@ -88,7 +88,7 @@ config:
     classDef bb fill:#0074d9,stroke:#cc5500,color:#333     
     classDef bn fill:#ffdc00,stroke:#cc5500,color:#333                                                                                                   
                                                                                                                                                            
-    class C1,C4,C5,C6,C7,C10,C11,C12,C13,C14,C15,C16,C17,C18,C19,C20 nn                                                                                                                      
+    class C1,C4,C5,C6,C7,C10,C11,C12,C13,C14,C15,C16,C17,C19,C20 nn                                                                                                                      
     class C2,C8,C21 nb2
     class C3,C9 bn2 
     class C17  bb
