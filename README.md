@@ -13,7 +13,12 @@ This project introduces a discrete structural grammar for financial markets, whe
 
 The core innovation is the **paired regime cycle**:
 - `neutral-neutral → neutral-bull → bull-neutral → neutral-neutral`  &#x21BA; (LONG pair)
+
+![](https://raw.githubusercontent.com/quantiota/SKA-Binance-API/refs/heads/main/images/mermaid-diagram1.png)
+
 - `neutral-neutral → neutral-bear → bear-neutral → neutral-neutral`  &#x21BA; (SHORT pair)
+
+![](https://raw.githubusercontent.com/quantiota/SKA-Binance-API/refs/heads/main/images/mermaid-diagram3.png)
 
 These transitions are not random. Their probability distribution is remarkably stable across time, giving the bot a structural edge rather than a statistical one.
 
