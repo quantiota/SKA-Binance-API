@@ -70,7 +70,7 @@ config:
 ---
 
    block-beta                                                                                                                                                 
-    columns 24                                                                                                                                               
+  columns 24                                                                                                                                               
     C4["neutral→neutral\nP ≈ 1.00"] C5["neutral→neutral\nP ≈ 1.00"] C6["neutral→neutral\nP ≈ 1.00"] C1["neutral→neutral\nP ≈ 1.00"] space space              
     C10["neutral→neutral\nP ≈ 1.00"] C11["neutral→neutral\nP ≈ 1.00"] C12["neutral→neutral\nP ≈ 1.00"] C7["neutral→neutral\nP ≈ 1.00"] space space       
     C13["neutral→neutral\nP ≈ 1.00"] C14["neutral→neutral\nP ≈ 1.00"] C15["neutral→neutral\nP ≈ 1.00"] C16["neutral→neutral\nP ≈ 1.00"] space space  space
@@ -80,7 +80,7 @@ config:
     space:46  
     C17["bear→bull\nP ≈ 0.45"]                          
     space:102                                                                                                                                               
-    space space space space C2["neutral→bear\nP ≈ 0.14"] space space space space space C8["neutral→bear\nP ≈ 0.14"] space space  space space space C21["neutral→bear\nP ≈ 0.14"]
+    space space space space C2["neutral→bear\nP ≈ 0.14"] space space space space space C8["neutral→bear\nP ≈ 0.14"] space space  space space space   C21["neutral→bear\nP ≈ 0.14"]
                                                                                                                                                              
     classDef nn fill:#c0d8ff,stroke:#999,color:#333                                                                                                          
     classDef nb2 fill:#f012be,stroke:#c00090,color:#fff                                                                                                      
