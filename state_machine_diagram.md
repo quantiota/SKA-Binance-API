@@ -1,5 +1,7 @@
 ## State Machine Diagram
 
+### Version 1
+
 ```mermaid
 ---
 config:
