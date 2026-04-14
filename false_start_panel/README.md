@@ -86,3 +86,43 @@ All 7 transition types observed within ~22 trade IDs.
 }
 ```
 ---
+
+
+### Case 3 — 2026-04-14T12:44:51.600Z
+
+**Observed sequence** (trade_id window 1607321228–1607321268):
+
+- `neutral→neutral` P = 1.00 — extended neutral gap
+- `neutral→bear`    P ≈ 0.15 — at ~1607321235
+- `bear→neutral`    P ≈ 0.51 — bear pair complete ✓
+- `neutral→bull`    P ≈ 0.66 — at ~1607321242
+- `neutral→bear`    P ≈ 0.15 — at ~1607321244
+- `bear→bull`       P ≈ 0.45 — at ~1607321246
+- `bull→bear`       P ≈ 0.02 — at ~1607321247
+- `bear→neutral`    P ≈ 0.51 — at ~1607321250
+- `neutral→bear`    P ≈ 0.15 — at ~1607321266
+- `bear→neutral`    P ≈ 0.51 — bear pair 2 complete ✓
+- `bull→neutral`    P ≈ 0.51 — at ~1607321268 — **different close** (no preceding neutral→bull)
+
+![Case 3](screenshots_case3.png)
+
+**Difference from Case 1**: Case 1 closes with a confirmed `neutral→bull` → `bull→neutral` pair. Here the close is `bull→neutral` appearing without a preceding `neutral→bull` — the open of the bull leg is absent, only the close arrives.
+
+**Inner sequence** (between bear pair 1 and close):
+
+```python
+{
+    "date": "2026-04-14T12:44:51.600Z",
+    "trade_id_window": [1607321242, 1607321268],
+    "sequence": [
+        {"transition": "neutral→bull", "P": 0.66},
+        {"transition": "neutral→bear", "P": 0.15},
+        {"transition": "bear→bull",    "P": 0.45},
+        {"transition": "bull→bear",    "P": 0.02},
+        {"transition": "bear→neutral", "P": 0.51},
+        {"transition": "neutral→bear", "P": 0.15},
+        {"transition": "bear→neutral", "P": 0.51},
+        {"transition": "bull→neutral", "P": 0.51}
+    ]
+}
+```
