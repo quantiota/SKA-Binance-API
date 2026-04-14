@@ -23,7 +23,7 @@ PnL        : pips lost on the false start trade
 
 ---
 
-### Case 1 — Bull False Start (bull→bear)
+### Case 1 — Bull False Start 
 
 ```
 **Observed sequence** (trade_id window 1607297434–1607297456):
