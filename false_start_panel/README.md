@@ -41,7 +41,7 @@ PnL        : pips lost on the false start trade
 
 All 7 transition types observed within ~22 trade IDs.
 
-![False Start Case 1](/false_start_panel/Screenshot_case1.png)
+![False Start Case 1](./false_start_panel/Screenshot_case1.png)
 
 **Inner sequence** (between bull pair 1 and bull pair 2):
 
