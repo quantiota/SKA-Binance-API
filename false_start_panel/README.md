@@ -55,3 +55,34 @@ All 7 transition types observed within ~22 trade IDs.
     ]
 }
 ```
+
+### Case 2 — 2026-04-14T12:21:45.115Z
+
+**Observed sequence** (trade_id window 1607313366–1607313382):
+
+- `neutral→neutral` P = 1.00 — extended neutral gap
+- `neutral→bear`    P ≈ 0.15 — at ~1607313371
+- `bear→neutral`    P ≈ 0.51 — bear pair complete ✓
+- `neutral→bull`    P ≈ 0.66 — at ~1607313373
+- `bull→bear`       P ≈ 0.02 — at ~1607313374
+- `bear→bull`       P ≈ 0.45 — at ~1607313375
+- `bull→neutral`    P ≈ 0.52 — at ~1607313376
+- `neutral→neutral` P = 1.00 — neutral gap resumes
+
+![Case 2](screenshots/screenshot_case2.png)
+
+**Inner sequence** (between bear pair and bull→neutral close):
+
+```python
+{
+    "date": "2026-04-14T12:21:45.115Z",
+    "trade_id_window": [1607313373, 1607313376],
+    "sequence": [
+        {"transition": "neutral→bull", "P": 0.66},
+        {"transition": "bull→bear",    "P": 0.02},
+        {"transition": "bear→bull",    "P": 0.45},
+        {"transition": "bull→neutral", "P": 0.52}
+    ]
+}
+```
+---
