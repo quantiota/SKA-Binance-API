@@ -43,3 +43,17 @@ All 7 transition types observed within ~22 trade IDs.
 
 ![False Start Case 1](/false_start_panel/Screenshot_case1.png)
 
+**Inner sequence** (between bull pair 1 and bull pair 2):
+
+```python
+{
+    "date": "2026-04-14T11:37:30.746Z",
+    "trade_id_window": [1607297442, 1607297445],
+    "sequence": [
+        {"transition": "neutral→bear", "P": 0.15},
+        {"transition": "bear→bull",    "P": 0.45},
+        {"transition": "bull→bear",    "P": 0.02},
+        {"transition": "bear→neutral", "P": 0.51}
+    ]
+}
+```
