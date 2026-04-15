@@ -37,7 +37,7 @@ A transition A→B is a **4-bit word** `[a₁a₀b₁b₀]` (from-state | to-sta
 | 7     | bull→bull       | `0101`     | — never observed |
 | 8     | bear→bear       | `1010`     | — never observed |
 
----
+
 
 
 ## Sequence
