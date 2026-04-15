@@ -7,7 +7,7 @@ We believe—like John Archibald Wheeler—that the ultimate foundation of reali
 
 *John Archibald Wheeler, "Information, Physics, Quantum: The Search for Links" (1989/1990).*
 
----
+
 
 ## State Encoding
 
@@ -39,25 +39,7 @@ The index is `prev_regime × 3 + regime` where `neutral=0, bull=1, bear=2`:
 | 7     | bear→bull       | `1001`     |
 | 8     | bear→bear       | `1010`     | — never observed |
 
----
 
-## Composition ∘
-
-`t₁ ∘ t₂` is valid when the to-state of `t₁` equals the from-state of `t₂`. The result:
-
-```
-t₁ ∘ t₂ = (t₁ AND 1100) OR (t₂ AND 0011)
-```
-
-Example: `neutral→neutral ∘ neutral→bull`
-
-```
-(0000 AND 1100) OR (0001 AND 0011) = 0000 OR 0001 = 0001  (neutral→bull)
-```
-
-A sequence is grammatically valid if and only if every consecutive pair composes.
-
----
 
 ## Sequence
 
@@ -77,7 +59,7 @@ code(S) = 0000 a₁ a₂ ... aₖ 0000  =  4(k+2) bits
 
 Two sequences are identical if and only if their binary codes are equal. The code is the complete, unambiguous identity of the episode — independent of time, price, and asset.
 
----
+
 
 ## Binary Information Flow
 
