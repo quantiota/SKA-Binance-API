@@ -51,17 +51,17 @@ In the SKA 3-state regime machine (bull, neutral, bear), there are 9 possible tr
 
 The 9 basis transitions, indexed by their 4-bit word, each with its one-hot vector `e_t ∈ {0,1}⁹`:
 
-| Index | Transition       | 4-bit word | One-hot               |
-|-------|-----------------|------------|-----------------------|
-| 0     | neutral→neutral | `0000`     | `[1,0,0,0,0,0,0,0,0]` |
-| 1     | neutral→bull    | `0001`     | `[0,1,0,0,0,0,0,0,0]` |
-| 2     | neutral→bear    | `0010`     | `[0,0,1,0,0,0,0,0,0]` |
-| 3     | bull→neutral    | `0100`     | `[0,0,0,1,0,0,0,0,0]` |
-| 4     | bear→neutral    | `1000`     | `[0,0,0,0,1,0,0,0,0]` |
-| 5     | bull→bear       | `0110`     | `[0,0,0,0,0,1,0,0,0]` |
-| 6     | bear→bull       | `1001`     | `[0,0,0,0,0,0,1,0,0]` |
-| 7     | bull→bull       | `0101`     | `[0,0,0,0,0,0,0,1,0]` — never observed |
-| 8     | bear→bear       | `1010`     | `[0,0,0,0,0,0,0,0,1]` — never observed |
+| Index | Transition       | 4-bit word |
+|-------|-----------------|------------|
+| 0     | neutral→neutral | `0000`     |
+| 1     | neutral→bull    | `0001`     |
+| 2     | neutral→bear    | `0010`     |
+| 3     | bull→neutral    | `0100`     |
+| 4     | bear→neutral    | `1000`     |
+| 5     | bull→bear       | `0110`     |
+| 6     | bear→bull       | `1001`     |
+| 7     | bull→bull       | `0101`     | — never observed |
+| 8     | bear→bear       | `1010`     | — never observed |
 
 ---
 
@@ -99,16 +99,15 @@ Sequence: `neutral→bear, bear→neutral, neutral→bull, bull→neutral, neutr
 
 4-bit words present:
 
-| Transition       | 4-bit word | Index | Bit |
-|-----------------|------------|-------|-----|
-| neutral→neutral | `0000`     | 0     | 1   |
-| neutral→bear    | `0010`     | 2     | 1   |
-| bear→neutral    | `1000`     | 4     | 1   |
-| neutral→bull    | `0001`     | 1     | 1   |
-| bull→neutral    | `0100`     | 3     | 1   |
-| neutral→bear    | `0010`     | 2     | 1   |
-| bear→bull       | `1001`     | 6     | 1   |
-| bull→bear       | `0110`     | 5     | 0   | ← never appears
+| Transition       | 4-bit word | Index |
+|-----------------|------------|-------|
+| neutral→neutral | `0000`     | 0     |
+| neutral→bear    | `0010`     | 2     |
+| bear→neutral    | `1000`     | 4     |
+| neutral→bull    | `0001`     | 1     |
+| bull→neutral    | `0100`     | 3     |
+| bear→bull       | `1001`     | 6     |
+| bull→bear       | `0110`     | 5     | ← never appears → bit 5 = 0
 
 ```
 bv = [1, 1, 1, 1, 1, 0, 1, 0, 0]
