@@ -7,7 +7,7 @@ We believe—like John Archibald Wheeler—that the ultimate foundation of reali
 
 *John Archibald Wheeler, "Information, Physics, Quantum: The Search for Links" (1989/1990).*
 
----
+
 
 ## State Encoding
 
@@ -19,7 +19,7 @@ We believe—like John Archibald Wheeler—that the ultimate foundation of reali
 
 Code `11` is undefined and never occurs.
 
----
+
 
 ## Transition Encoding
 
