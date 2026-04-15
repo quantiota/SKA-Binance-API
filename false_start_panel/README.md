@@ -1,7 +1,7 @@
 # False Start Panel — Observed Cases
 
 Forensic archive of false starts captured on the live Grafana panel.
-Each entry records the transition sequence, P values, and PnL observed in real time.
+Each entry records the transition sequence and P values observed in real time.
 
 ---
 
