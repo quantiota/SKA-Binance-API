@@ -75,7 +75,7 @@ Unlike classical bots that rely on lagging indicators (RSI, Moving Averages, Bol
 
 - The heavy entropy computation runs on a powerful backend server (heavy matrix computation, entropy learning, 3500 ticks per loop )
 - The lightweight execution layer (poll API, state machine, decision logic, and order placement) runs efficiently on a [HP Microserver Gen8](https://github.com/quantiota/AI-Agent-Farm/blob/master/doc/it-admin/hardware/hardware-list.md) via the [AI-Agent-Host](https://github.com/quantiota/AI-Agent-Host). 
-- The system is designed for **live trading**, not simulation. Every decision is made on real tick-by-tick market data.
+- Every decision is made on real tick-by-tick market data, not simulation.
 - The system is designed to scale as a trading bot farm — multiple independent nodes, each with its own account and PnL stream.
 
 This architecture allows sophisticated quant-level logic to run on modest hardware while maintaining full transparency and control.
