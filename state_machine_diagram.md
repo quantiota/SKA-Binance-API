@@ -82,11 +82,11 @@ flowchart TD
     N -->|"prev=2 curr=0"| T2["bear-neutral\nP ≈ 0.51"]
 
     B -->|"prev=0 curr=1"| T3["neutral-bull\nP ≈ 0.66"]
-    B -->|"prev=1 curr=1"| T4["bull-bull\nMONITORED"]
+    B -->|"prev=1 curr=1"| T4["bull-bull"]
     B -->|"prev=2 curr=1"| DJ2["bear-bull\nMONITORED"]
 
     R -->|"prev=0 curr=2"| T5["neutral-bear\nP ≈ 0.14"]
-    R -->|"prev=2 curr=2"| T6["bear-bear\nMONITORED"]
+    R -->|"prev=2 curr=2"| T6["bear-bear"]
     R -->|"prev=1 curr=2"| DJ1["bull-bear\nMONITORED"]
 
     T3 -->|"OPEN LONG"| WAIT_PAIR_L["WAIT_PAIR\nLONG"]
@@ -126,3 +126,5 @@ flowchart TD
 
     PROBE_EXIT_S -->|"bear-neutral\nprobe complete → HOLD"| READY_S
 ```
+
+
