@@ -3,9 +3,8 @@
 ### Version 1
 
 **Sequences:**
-- `320` (39.1%) : `0000 → neutral-bull → bull-neutral → 0000`  dp=+1  → LONG
-- `640` (38.6%) : `0000 → neutral-bear → bear-neutral → 0000`  dp=-1  → SHORT
-
+- (39.1%) : `neutral-neutral → neutral-bull → bull-neutral → neutral-neutral`  dp=+1  → LONG
+- (38.6%) : `neutral-neutral → neutral-bear → bear-neutral → neutral-neutral`  dp=-1  → SHORT
 
 ```mermaid
 ---
@@ -56,14 +55,15 @@ flowchart TD
     EXIT_S -->|"neutral→bear\ncycle repeats"| WAIT_PAIR_S
 ```
 
+---
 
 ### Version 2 — probe-aware, sequence-level decision
 
 Direct jumps (bull-bear, bear-bull) are no longer ignored — they signal a probe sequence and trigger HOLD.
 
 **Probe sequences:**
-- `5760`  (4.1%) : `0000 → neutral-bull → bull-bear → bear-neutral → 0000`  dp=0  → HOLD LONG
-- `10560` (4.4%) : `0000 → neutral-bear → bear-bull → bull-neutral → 0000`  dp=0  → HOLD SHORT
+- (4.1%) : `neutral-neutral → neutral-bull → bull-bear → bear-neutral → neutral-neutral`  dp=0  → HOLD LONG
+- (4.4%) : `neutral-neutral → neutral-bear → bear-bull → bull-neutral → neutral-neutral`  dp=0  → HOLD SHORT
 
 ```mermaid
 ---
