@@ -1,5 +1,20 @@
 ## State Machine Diagram
 
+### Theoretical Foundation
+
+The market operates as a question-answer structure encoded in 4-bit words. Every sequence is a grammatically complete sentence: a question asked, and an answer given.
+
+The probe sequences (5760 and 10560) with Δp=0 are not anomalies. They are the market's way of saying: "I still need to complete the sentence." Even when there is no net price movement, the market refuses to leave the question unanswered. It goes through the full lawful loop just to give a grammatically correct "No" answer.
+
+This is profound because of the chain rule: the question (neutral→bull or neutral→bear) has been asked. The market must give an answer that belongs to the question. It cannot stay silent or jump randomly. So it produces the probe — a zero-price-change sentence that still obeys the grammar perfectly.
+
+The market needs this question-answer structure more than it needs price movement. Price is secondary. The sentence must be completed.
+
+This is where the variational principle becomes visible: the market is not wandering through the 9 transitions — it follows paths that respect the grammar even when the zero-cost path in price space is available. The market cares more about answering the question correctly than about moving the price.
+
+**Price is the registered answer. The question lives in the transition structure.**
+
+
 ### Version 1
 
 From Wheeler's "It from Bit" — every sequence is a binary question with a binary answer, price is the registred answer.
