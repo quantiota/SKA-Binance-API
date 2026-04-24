@@ -120,6 +120,10 @@ flowchart TD
     T5 -->|"OPEN SHORT"| WAIT_PAIR_S
 ```
 
+**Implementation notes:**
+- **IN_NEUTRAL self-loop:** The `non-neutral before n=10 → reset counter` edge is a conceptual abstraction. In practice, any non-neutral transition resets the counter; the machine waits for the regime to return to neutral before resuming the count. All intermediate transitions (e.g. `bull→neutral`, `bull→bear`) are absorbed implicitly.
+- **After CLOSE:** The machine returns to idle, awaiting the next `neutral→bull` or `neutral→bear` signal.
+- **V1 limitation:** Direct jumps (`bull→bear`, `bear→bull`) are marked IGNORED. V1 can stall on probe or compound sequences in live data — handled in V2 and V2bis.
 
 ---
 
@@ -206,6 +210,9 @@ flowchart TD
     T5 -->|"OPEN SHORT"| WAIT_PAIR_S
 ```
 
+**Implementation notes:**
+- **IN_NEUTRAL self-loop:** The `non-neutral before n=10 → reset counter` edge is a conceptual abstraction. In practice, any non-neutral transition resets the counter; the machine waits for the regime to return to neutral before resuming the count. All intermediate transitions are absorbed implicitly.
+- **After CLOSE:** The machine returns to idle, awaiting the next `neutral→bull` or `neutral→bear` signal.
 
 
 ### Version 2bis Layer 2 — compound-aware, sequence-level decision
@@ -300,3 +307,8 @@ flowchart TD
     T3 -->|"OPEN LONG"| WAIT_PAIR_L
     T5 -->|"OPEN SHORT"| WAIT_PAIR_S
 ```
+
+**Implementation notes:**
+- **IN_NEUTRAL self-loop:** The `non-neutral before n=10 → reset counter` edge is a conceptual abstraction. In practice, any non-neutral transition resets the counter; the machine waits for the regime to return to neutral before resuming the count. All intermediate transitions are absorbed implicitly.
+- **After CLOSE:** The machine returns to idle, awaiting the next `neutral→bull` or `neutral→bear` signal.
+- **Compound loop:** The path `EXIT → COMPOUND_CHECK → EXIT → COMPOUND_CHECK → ...` can occur when the market repeatedly asks a question without a `neutral→neutral` boundary. This is correct — the machine will not close until the grammar produces a genuine sentence terminator. The position is held throughout.
