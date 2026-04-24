@@ -1,7 +1,7 @@
 ## State Machine Diagram
 
 
-## State Encoding
+### State Encoding
 
 | State   | Code |
 |---------|------|
@@ -11,9 +11,9 @@
 
 Code `11` is undefined and never occurs.
 
----
 
-## Transition Encoding
+
+### Transition Encoding
 
 A transition A→B is a **4-bit word** `[a₁a₀b₁b₀]` (from-state | to-state):
 
@@ -32,6 +32,7 @@ The index is `prev_regime × 3 + regime` where `neutral=0, bull=1, bear=2`:
 | 8     | bear→bear       | `1010`     | — never observed |
 
 
+[Read More](https://github.com/quantiota/SKA-quantitative-finance/tree/main/ska_engine_c/binary_transition_space)
 
 ### Theoretical Foundation
 
