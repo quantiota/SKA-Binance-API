@@ -251,7 +251,7 @@ flowchart TD
 
 ```
 
-[Full size](https://raw.githubusercontent.com/quantiota/SKA-Binance-API/d0d29b2abb445ee2a586ab9e946b9d45378f7f39/images/state-machine-diagram.svg)]
+[Full size](https://raw.githubusercontent.com/quantiota/SKA-Binance-API/d0d29b2abb445ee2a586ab9e946b9d45378f7f39/images/state-machine-diagram.svg)
 
 
 
