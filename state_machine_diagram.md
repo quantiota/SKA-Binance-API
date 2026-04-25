@@ -212,6 +212,8 @@ flowchart TD
     T5 -->|"OPEN SHORT"| WAIT_PAIR_S
 ```
 
+[Full size](https://raw.githubusercontent.com/quantiota/SKA-Binance-API/d0d29b2abb445ee2a586ab9e946b9d45378f7f39/images/state-machine-diagram-v2.svg)
+
 **Implementation notes:**
 - **IN_NEUTRAL self-loop:** The `non-neutral before n=10 → reset counter` edge is a conceptual abstraction. In practice, any non-neutral transition resets the counter; the machine waits for the regime to return to neutral before resuming the count. All intermediate transitions are absorbed implicitly.
 - **After CLOSE:** The machine returns to idle, awaiting the next `neutral→bull` or `neutral→bear` signal.
@@ -309,6 +311,8 @@ flowchart TD
     T3 -->|"OPEN LONG"| WAIT_PAIR_L
     T5 -->|"OPEN SHORT"| WAIT_PAIR_S
 ```
+[Full size](https://raw.githubusercontent.com/quantiota/SKA-Binance-API/d0d29b2abb445ee2a586ab9e946b9d45378f7f39/images/state-machine-diagram-v2bis.svg)
+
 
 **Implementation notes:**
 - **IN_NEUTRAL self-loop:** The `non-neutral before n=10 → reset counter` edge is a conceptual abstraction. In practice, any non-neutral transition resets the counter; the machine waits for the regime to return to neutral before resuming the count. All intermediate transitions are absorbed implicitly.
