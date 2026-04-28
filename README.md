@@ -96,7 +96,7 @@ This is fundamentally different from classical bots where risk = price distance.
 
 ## Architecture Diagram
 
-The architecture shown uses QuestDB and Grafana for real-time validation of the trading bot logic on live Binance tick data. This Python-based stack is the research and validation environment. The production prototype will be implemented in C++ for low-latency execution.
+The architecture shown uses QuestDB and Grafana for real-time validation of the trading bot logic on live Binance tick data. This Python-based stack is the research and validation environment. The [production SKA Engine](https://github.com/quantiota/SKA-quantitative-finance/tree/main/ska_engine_c) will be implemented in C++ for low-latency execution.
 
 ```mermaid
 ---
