@@ -74,7 +74,7 @@ Unlike classical bots that rely on lagging indicators (RSI, Moving Averages, Bol
 ### Why This Matters
 
 - The heavy entropy computation runs on a powerful backend server (heavy matrix computation, entropy learning, 3500 ticks per loop)
-- The execution layer (state machine, decision logic, and order placement) must run on **AWS Tokyo (`ap-northeast-1`)** — Binance matching engine latency from Tokyo is ~5ms. From Europe or the US it is 150–400ms, sufficient to corrupt probe sequence detection and eliminate the structural edge.
+- The execution layer (state machine, decision logic, and order placement) must run on AWS Tokyo (`ap-northeast-1`) — Binance matching engine latency from Tokyo is ~5ms. From Europe or the US it is 150–400ms, sufficient to corrupt probe sequence detection and eliminate the structural edge.
 - The system is designed to scale as a trading bot farm — multiple independent nodes, each with its own account and PnL stream.
 
 This architecture allows sophisticated quant-level logic to run on modest hardware while maintaining full transparency and control.
