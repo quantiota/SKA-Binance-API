@@ -422,11 +422,24 @@ flowchart TD
 [Full size](https://raw.githubusercontent.com/quantiota/SKA-Binance-API/7b429b01d3275a0cee5adba6b2c35614873985d8/images/state-machine-diagram-v3.svg)
 
 
+
 **Implementation notes:**
 - **IN_NEUTRAL self-loop:** Same abstraction as V2bis — any non-neutral before n=10 resets the counter; intermediate transitions absorbed implicitly.
 - **After CLOSE:** Machine returns to idle, awaiting the next `neutral→bull` or `neutral→bear` signal.
 - **DETOUR is PROBE + one level deeper:** PROBE handles one direct jump; DETOUR handles two. Both return to READY on the matching return-to-neutral.
-- **Probe path skips IN_NEUTRAL dwell:** `WAIT_PAIR → PROBE → DETOUR → READY` reaches READY without passing through IN_NEUTRAL. The probe grammar itself is the confirmation — the n≥10 dwell is not required.
-- **Remaining stuck sequences:** 3+ direct jumps (0.56% of all sequences) cannot be handled by finite state extension without diminishing returns. These are suppressed upstream by the external pattern matcher (false_start_library).
+- **Probe path skips IN_NEUTRAL dwell:** `WAIT_PAIR → PROBE → DETOUR → READY` reaches READY without passing through IN_NEUTRAL. The probe grammar itself is the confirmation — the n≥10 dwell is not required. The double-probe is self-confirming: the market tested both directions and resolved back to neutral. A 10-tick dwell after DETOUR would be redundant and delay re-entry.
+- **PROBE_EXIT gap — no DETOUR_EXIT:** In PROBE_EXIT, a second direct jump has no defined transition and would leave the machine stuck. This is a known structural gap. The fix (a DETOUR_EXIT state) is intentionally omitted — the sequence that triggers it (EXIT_WAIT → PROBE_EXIT → second jump) falls into the 0.56% handled upstream by the external pattern matcher. Adding DETOUR_EXIT would complicate the machine for a case that is suppressed before it reaches the state machine.
+- **Remaining stuck sequences:** 3+ direct jumps (0.56% of all sequences) are suppressed upstream by the external pattern matcher (false_start_library).
+
+**Architectural division of labor:**
+
+| Component | Coverage | Mechanism |
+|---|---|---|
+| State Machine V3 | 92.4% | Deterministic grammar parser, 9 states |
+| Pattern Matcher | 0.56% | L1-cache integer lookup, O(log 1381) |
+| Unaccounted | 7.04% | Valid grammar — below frequency threshold for signal assignment |
+
+The state machine handles the grammar. The pattern matcher handles the anomalies. Low-frequency sequences are valid sentences the architecture does not yet act on.
+
 
 
