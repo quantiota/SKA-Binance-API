@@ -255,7 +255,7 @@ flowchart TD
 
 
 
-[Version 2 — probe-aware & compound, sequence-level decision](https://github.com/quantiota/SKA-Binance-API/blob/main/state_machine_diagram.md)
+[Version 2-3 — probe-aware, compound & detour-aware, sequence-level decision](https://github.com/quantiota/SKA-Binance-API/blob/main/state_machine_diagram.md)
 
 ## Supported Symbols
 
