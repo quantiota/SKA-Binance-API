@@ -464,7 +464,7 @@ The full mathematical foundation and batch implementation are public for verific
 
 **SKA Academy**
 
-- [Structured Knowledge Accumulation Course](https://quantiota.moodlecloud.com/)
+- [SKA Course](https://quantiota.moodlecloud.com/)
 
 
 ## Contributing
