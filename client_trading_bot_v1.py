@@ -135,6 +135,10 @@ IN_NEUTRAL = 'IN_NEUTRAL'
 READY      = 'READY'
 EXIT_WAIT  = 'EXIT_WAIT'
 
+# Direct jumps (false_start.md) — recognised by their own P so that V1 can IGNORE them, as drawn
+JUMP_BULL_BEAR = (0.015, 0.022)   # bull→bear, P ≈ 0.018
+JUMP_BEAR_BULL = (0.44, 0.46)     # bear→bull, P ≈ 0.45
+
 
 @dataclass
 class Position:
@@ -182,6 +186,7 @@ class TradingBot:
         self._last_open_name  = None
         self._last_open_P     = None
         self._already_long    = False  # BUY already on exchange after CLOSE_SHORT
+        self._reg             = 'neutral'  # current regime, to recognise direct jumps (ignored in V1)
         self._dp_pair_written = False
         self._entropy_count   = 0
 
@@ -340,6 +345,25 @@ class TradingBot:
 
     # ── State machine ─────────────────────────────────────────────────────────
 
+    def _grammar(self, name, P):
+        """ΔP bands give the paired-regime openings; the transition after an opening is a direct jump
+        (bull→bear / bear→bull) when its P is in the jump band, otherwise the return to neutral."""
+        if self._reg == 'bull':
+            if P is not None and JUMP_BULL_BEAR[0] <= P <= JUMP_BULL_BEAR[1]:
+                name, self._reg = 'bull→bear', 'bear'
+            else:
+                name, self._reg = 'bull→neutral', 'neutral'
+        elif self._reg == 'bear':
+            if P is not None and JUMP_BEAR_BULL[0] <= P <= JUMP_BEAR_BULL[1]:
+                name, self._reg = 'bear→bull', 'bull'
+            else:
+                name, self._reg = 'bear→neutral', 'neutral'
+        else:
+            if name not in ('neutral→neutral', 'neutral→bull', 'neutral→bear'):
+                name = 'neutral→neutral'
+            self._reg = {'neutral→bull': 'bull', 'neutral→bear': 'bear'}.get(name, 'neutral')
+        return name
+
     def process_signal(self, transition):
         trade_id = transition['trade_id']
         price    = transition['price']
@@ -350,6 +374,8 @@ class TradingBot:
         if self.last_trade_id is not None and trade_id <= self.last_trade_id:
             return
         self.last_trade_id = trade_id
+
+        name = self._grammar(name, P)   # direct jumps recognised by their P
 
         # Direct jumps (bull→bear, bear→bull) are localized entropy shocks — mean-reversion expected
         # Do NOT react — keep position open through the spike
@@ -470,13 +496,6 @@ class TradingBot:
                         f"PnL={pnl:+.6f} ({pnl_pct:+.4f}%) | entry={self.position.entry_price:.6f}"
                     )
                     self.position = None
-                elif name == 'neutral→bull':
-                    self.position.exit_state = WAIT_PAIR
-                    self.position.neutral_neutral_count = 0
-                    logging.info(
-                        f"--- Bear cycle aborted (neutral→bull) @ {price:.6f} "
-                        f"| WAIT_PAIR | still LONG | trade_id={trade_id}"
-                    )
 
         # === SHORT POSITION ===
         elif self.position.side == 'SHORT':
@@ -540,13 +559,6 @@ class TradingBot:
                     )
                     self._already_long = True
                     self.position = None
-                elif name == 'neutral→bear':
-                    self.position.exit_state = WAIT_PAIR
-                    self.position.neutral_neutral_count = 0
-                    logging.info(
-                        f"--- Bull cycle aborted (neutral→bear) @ {price:.6f} "
-                        f"| WAIT_PAIR | still SHORT | trade_id={trade_id}"
-                    )
 
     # ── Recording ─────────────────────────────────────────────────────────────
 
@@ -659,14 +671,3 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='SKA Paired Cycle Trading Bot')
     parser.add_argument('--symbol', default=SYMBOL,         help='Trading pair (default: XRPUSDT)')
     parser.add_argument('--api',    default=API_URL,         help='SKA-API base URL')
-    parser.add_argument('--poll',   type=float, default=1.0, help='Poll interval seconds')
-    parser.add_argument('--live',   action='store_true',     help='Enable live trading (default: dry run)')
-    args = parser.parse_args()
-
-    bot = TradingBot(
-        symbol=args.symbol,
-        api_url=args.api,
-        poll_interval=args.poll,
-        dry_run=not args.live,
-    )
-    bot.run()
