@@ -50,9 +50,9 @@ Execution model (spot only — no margin/futures):
   Signal source: SKA API at api.quantiota.org — proprietary engine, transitions only.
 
 Usage:
-    python client_trading_bot.py --symbol XRPUSDT                        # dry run
-    python client_trading_bot.py --symbol XRPUSDC --live                 # live trading
-    python client_trading_bot.py --symbol BTCUSDT --api https://api.quantiota.org
+    python trading_bot_v1.py --symbol XRPUSDT                        # dry run
+    python trading_bot_v1.py --symbol XRPUSDC --live                 # live trading
+    python trading_bot_v1.py --symbol BTCUSDT --api https://api.quantiota.org
 """
 
 import argparse
@@ -80,14 +80,14 @@ logging.basicConfig(level=logging.INFO, format='%(asctime)s %(levelname)s %(mess
 
 # ── User configuration ────────────────────────────────────────────────────────
 
-VERSION         = 2          # ← change this to switch between bot versions
+VERSION         = 1          # ← change this to switch between bot versions
 SYMBOL          = "XRPUSDT"
 MIN_NN_COUNT    = 3          # Structural filter — do not change unless you know why
 API_URL         = "https://api.quantiota.org"
 POLL_INTERVAL   = 1.0        # seconds
 DP_PAIR_CUTOFF  = 3200       # stop recording ΔP_pair before engine reset
 
-RESULTS_DIR     = 'bot_results_v2'
+RESULTS_DIR     = 'bot_results_v1'
 
 # P band positions — universal constants at convergence scale, confirmed XRPUSDT+BTCUSDT
 P_NEUTRAL_NEUTRAL = 1.00
@@ -149,7 +149,7 @@ class Position:
 
 
 class TradingBot:
-    """SKA paired cycle trading bot v2 — regime classified from ΔP tolerance bands where P = exp(-|ΔH/H|).
+    """SKA paired cycle trading bot v1 — regime classified from ΔP tolerance bands where P = exp(-|ΔH/H|).
 
     Execution model (spot only — no margin/futures):
       LONG open  (neutral→bull, or SHORT close → re-enter) : BUY on exchange
