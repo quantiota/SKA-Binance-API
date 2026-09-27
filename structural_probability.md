@@ -391,10 +391,10 @@ flowchart TD
     READY_L -->|"neutral→bull\ncycle repeats"| WAIT_PAIR_L
     READY_L -->|"neutral→bear\nopposite opens"| EXIT_L["EXIT_WAIT\nLONG"]
     EXIT_L -->|"bear→neutral\n|P−0.51|≤0.0153"| CLOSE_L["CLOSE LONG"]
-    EXIT_L -->|"neutral→bull\ncycle repeats"| WAIT_PAIR_L
+   
 
     READY_S -->|"neutral→bear\ncycle repeats"| WAIT_PAIR_S
     READY_S -->|"neutral→bull\nopposite opens"| EXIT_S["EXIT_WAIT\nSHORT"]
-    EXIT_S -->|"bull→neutral\n|P−0.51|≤0.0153"| CLOSE_S["CLOSE SHORT"]
+   
     EXIT_S -->|"neutral→bear\ncycle repeats"| WAIT_PAIR_S
 ```
