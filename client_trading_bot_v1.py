@@ -1,5 +1,6 @@
 """
-SKA Paired Cycle Trading Bot — entropy-derived probability regime transitions (ΔP).
+SKA Paired Cycle Trading Bot v1 — implements Version 1 of state_machine_diagram.md
+(entropy-derived probability regime transitions, ΔP).
 
 Regime definition:
   P(n)    = exp(-|ΔH/H|)   where  ΔH/H = (H(n) - H(n-1)) / H(n)
@@ -50,9 +51,9 @@ Execution model (spot only — no margin/futures):
   Signal source: SKA API at api.quantiota.org — proprietary engine, transitions only.
 
 Usage:
-    python trading_bot_v1.py --symbol XRPUSDT                        # dry run
-    python trading_bot_v1.py --symbol XRPUSDC --live                 # live trading
-    python trading_bot_v1.py --symbol BTCUSDT --api https://api.quantiota.org
+    python client_trading_bot_v1.py --symbol XRPUSDT                        # dry run
+    python client_trading_bot_v1.py --symbol XRPUSDC --live                 # live trading
+    python client_trading_bot_v1.py --symbol BTCUSDT --api https://api.quantiota.org
 """
 
 import argparse
@@ -669,4 +670,3 @@ if __name__ == '__main__':
         dry_run=not args.live,
     )
     bot.run()
-
