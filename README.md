@@ -98,6 +98,19 @@ Risk is not managed by price distance but by market structure. If the regime doe
 
 This is fundamentally different from classical bots where risk = price distance. Here risk = structural uncertainty of the regime completing its cycle.
 
+## Parsimony
+
+*Entia non sunt multiplicanda praeter necessitatem.*
+
+This bot is the minimal object that reads the structure. Four constants — the P band
+positions 1.00, 0.66, 0.51, 0.14 — and a state machine over the grammar they define.
+The constants are not tuned; they are measured, and they hold across months of tick data.
+
+The parsimony is not a design choice. It follows from the structure: once the grammar is
+read correctly, nothing else is needed, and anything added would describe the reader rather
+than the market. Where a model needs many parts to fit the data, it has not yet found the law.
+
+
 ## Architecture Diagram
 
 The architecture shown uses QuestDB and Grafana for real-time validation of the trading bot logic on live Binance tick data. This Python-based stack is the research and validation environment. The [production SKA Engine](https://github.com/quantiota/SKA-quantitative-finance/tree/main/ska_engine_c) will be implemented in C++ for low-latency execution.
